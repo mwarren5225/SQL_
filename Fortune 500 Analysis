@@ -57,3 +57,27 @@ VALUES
     ('Company II', 'Telecommunications', 110.5, 2000, 1, 21, 12, 4.9),
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
+
+#Analysis
+
+-- Assign all the companies in the Healthcare Industry as "health coverage", or "no health coverage" based on whether or not healthcare benefits are offered.
+
+SELECT 
+company_name,
+CASE 
+	WHEN healthcare_benefits =1 THEN 'health benefit'
+	ELSE 'no health benefit'
+END as health_benefit
+FROM fortune_companies 
+WHERE industry='Healthcare'
+;
+
+-- Use the HAVING clause to 
+
+--Which companies have an average employee tenure of at least five years, and what is the average tenure? --
+
+SELECT company_name, ROUND(avg_employee_tenure) as avg_tenure
+FROM fortune_companies
+GROUP BY company_name
+HAVING avg_tenure>=5;
+ORDER BY avg_tenure asc;
